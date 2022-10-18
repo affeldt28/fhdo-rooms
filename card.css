@@ -1,0 +1,37 @@
+.card-wrapper {
+	display: grid;
+	gap: 1rem;
+}
+
+.card {
+	padding: 1rem;
+	border: 0.2rem solid var(--color-4);
+}
+
+.card h3,
+.card h4 {
+	margin-bottom: 0.9rem;
+}
+
+.card-hover:hover {
+	border-color: var(--color-1);
+}
+
+.meta {
+	font-size: small;
+	margin-block: 0.5rem;
+}
+
+/* for bigger screens */
+@media screen and (min-width: 48em) {
+	/* change card direction from row to columns */
+	.card-wrapper {
+		grid-template-rows: min-content;
+		grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+		justify-content: space-evenly;
+	}
+	/* min height, that it doesn't look weird*/
+	.card-wrapper .card {
+		min-height: 10em;
+	}
+}
