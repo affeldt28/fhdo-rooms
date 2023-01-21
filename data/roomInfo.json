@@ -8,13 +8,18 @@
 	{ "roomId": "A.2.03", "title": "Seminarraum" },
 	{ "roomId": "A.3.03", "title": "Seminarraum" },
 
+	{ "roomId": "B.E.23.1", "title": "InnoLab - Hauptraum" },
+	{ "roomId": "B.E.23.2", "title": "InnoLab - Nebenraum" },
 	{ "roomId": "B.1.20", "title": "" },
 	{ "roomId": "B.1.23", "title": "" },
 	{ "roomId": "B.2.20", "title": "Labor" },
 	{ "roomId": "B.2.21", "title": "" },
 
 	{ "roomId": "C.E.31", "title": "" },
-	{ "roomId": "C.E.32", "title": "" },
+	{
+		"roomId": "C.E.32",
+		"title": "Hardware Labor 2"
+	},
 	{ "roomId": "C.E.40", "title": "" },
 	{ "roomId": "C.E.41", "title": "" },
 	{ "roomId": "C.1.30", "title": "" },
