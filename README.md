@@ -1,6 +1,6 @@
 # Fachhochschule Dortmund Room Overview
 
-Quick and dirty overview, probably mission rooms
+Quick and dirty overview, probably missing rooms
 
 Live site at [rooms.affeldt.io](https://rooms.affeldt.io)
 
