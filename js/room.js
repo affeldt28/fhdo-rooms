@@ -6,6 +6,7 @@ const URL_PLACEHOLDER = '*';
 const API_URL = `https://ws.inf.fh-dortmund.de/timetable/current/rest/Room/${URL_PLACEHOLDER}/AllEvents`;
 const ACCEPT_HTML = '?Accept=text/html';
 const ACCEPT_JSON = '?Accept=application/json';
+const ROOM_FREE = 'Raum ist laut Plan, heute frei.';
 
 /**
  * Creates get request to given url.
@@ -49,8 +50,8 @@ function loadNextEvents() {
 			API_URL.replace(URL_PLACEHOLDER, roomId) + ACCEPT_JSON,
 		);
 
-		if (events.length == 0) {
-			room.appendChild(createInfo('Keine Events für diesen Raum.'));
+		if (events == undefined || events.length == 0) {
+			room.appendChild(createInfo(ROOM_FREE));
 			continue;
 		}
 
@@ -83,7 +84,7 @@ function loadNextEvents() {
 				room.appendChild(createInfo(next.name));
 			}
 		} else {
-			room.appendChild(createInfo('Raum ist laut Plan, heute frei.'));
+			room.appendChild(createInfo(ROOM_FREE));
 		}
 	}
 }
