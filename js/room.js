@@ -36,7 +36,7 @@ function getParsed(url) {
  * TODO
  *
  */
-function load() {
+function loadNextEvents() {
 	/** @type {NodeListOf<HTMLAnchorElement>} */
 	const rooms = document.querySelectorAll('a[room]');
 	const today = new Date();
@@ -48,6 +48,12 @@ function load() {
 		const events = getParsed(
 			API_URL.replace(URL_PLACEHOLDER, roomId) + ACCEPT_JSON,
 		);
+
+		if (events.length == 0) {
+			room.appendChild(createInfo('Keine Events für diesen Raum.'));
+			continue;
+		}
+
 		/** @type {FhDoEvent} */
 		const next = events[0];
 
@@ -98,7 +104,7 @@ function addColon(time) {
  * @return Time string as `hh:mm - hh:mm`
  */
 function timeFromTo(from, to) {
-	var time = '';
+	let time = '';
 
 	if (from.match(/[0-9]{2}:[0-9]{2}/)) time += from;
 	else if (from.match(/[0-9]{4}/)) time += addColon(from);
@@ -157,9 +163,10 @@ function main() {
 	/** @type {RoomInfo[]} */
 	const rooms = getParsed('/data/roomInfo.json');
 
+	// Populate site with room cards
 	for (const room of rooms) wrapper.appendChild(createRoomElement(room));
 
-	load();
+	loadNextEvents();
 }
 
 main();
