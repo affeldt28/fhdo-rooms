@@ -1,33 +1,102 @@
 [
-	{ "roomId": "A.E.01", "title": "Vorlesungsraum" },
-	{ "roomId": "A.E.02", "title": "Vorlesungsraum" },
-	{ "roomId": "A.E.03", "title": "Seminarraum" },
-	{ "roomId": "A.1.02", "title": "Vorlesungsraum" },
-	{ "roomId": "A.1.03", "title": "Seminarraum" },
-	{ "roomId": "A.2.02", "title": "Vorlesungsraum" },
-	{ "roomId": "A.2.03", "title": "Seminarraum" },
-	{ "roomId": "A.3.03", "title": "Seminarraum" },
+	{
+		"roomId": "A.E.01",
+		"title": "Vorlesungsraum",
+		"ekey": {
+			"student": true
+		}
+	},
+	{
+		"roomId": "A.E.02",
+		"title": "Vorlesungsraum",
+		"ekey": {
+			"student": true
+		}
+	},
+	{
+		"roomId": "A.E.03",
+		"title": "Seminarraum",
+		"ekey": {
+			"student": true
+		}
+	},
+	{
+		"roomId": "A.1.02",
+		"title": "Vorlesungsraum",
+		"ekey": {
+			"student": true
+		}
+	},
+	{
+		"roomId": "A.1.03",
+		"title": "Seminarraum",
+		"ekey": {
+			"student": true
+		}
+	},
+	{
+		"roomId": "A.2.02",
+		"title": "Vorlesungsraum",
+		"ekey": {
+			"student": true
+		}
+	},
+	{
+		"roomId": "A.2.03",
+		"title": "Seminarraum",
+		"ekey": {
+			"student": true
+		}
+	},
+	{
+		"roomId": "A.3.03",
+		"title": "Seminarraum",
+		"ekey": {
+			"student": true
+		}
+	},
 
 	{ "roomId": "B.E.21", "title": "Seminarraum" },
 	{ "roomId": "B.E.23.1", "title": "InnoLab - Hauptraum" },
 	{ "roomId": "B.E.23.2", "title": "InnoLab - Nebenraum" },
 	{ "roomId": "B.1.20", "title": "" },
-	{ "roomId": "B.1.23", "title": "" },
+	{
+		"roomId": "B.1.23",
+		"title": "MI-Labor",
+		"ekey": {
+			"student": false
+		}
+	},
 	{ "roomId": "B.2.20", "title": "Labor" },
 	{ "roomId": "B.2.21", "title": "" },
 
 	{ "roomId": "C.E.31", "title": "" },
 	{
 		"roomId": "C.E.32",
-		"title": "Hardware Labor 2"
+		"title": "Hardware Labor 2",
+		"ekey": {
+			"student": false
+		}
 	},
 	{ "roomId": "C.E.40", "title": "" },
 	{ "roomId": "C.E.41", "title": "" },
 	{ "roomId": "C.E.42", "title": "Seminarraum" },
 	{ "roomId": "C.1.30", "title": "" },
-	{ "roomId": "C.1.31", "title": "" },
+	{
+		"roomId": "C.1.31",
+		"title": "Softwarelabor I",
+		"ekey": {
+			"student": true
+		}
+	},
 	{ "roomId": "C.2.30", "title": "" },
-	{ "roomId": "C.2.32", "title": "Softwarelabor II" },
+	{
+		"roomId": "C.2.32",
+		"title": "Softwarelabor II",
+		"ekey": {
+			"student": true
+		}
+	},
 	{ "roomId": "C.3.32", "title": "" },
 	{ "roomId": "C.3.34", "title": "" }
 ]
