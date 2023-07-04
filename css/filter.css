@@ -1,0 +1,26 @@
+.btn-group {
+	margin: 1rem;
+	display: flex;
+	gap: 0.4rem;
+}
+
+.btn {
+	appearance: none;
+	background-color: var(--color-6);
+	color: var(--color-1);
+	border: 0.1rem solid var(--color-1);
+	border-radius: 0.2rem;
+	font-size: 1rem;
+	font-weight: bold;
+	padding: 0.5rem 1rem;
+}
+
+.btn.active,
+.btn:hover {
+	background-color: var(--color-1);
+	color: var(--color-6);
+}
+
+.hidden {
+	display: none;
+}

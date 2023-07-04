@@ -37,3 +37,15 @@ export interface RoomInfo {
 	title: string;
 	eKey: { student: boolean };
 }
+
+export const FilterTypeArr = [
+	'all',
+	'a',
+	'b',
+	'c',
+	'eg',
+	'1og',
+	'2og',
+	'3og',
+] as const;
+export type FilterType = (typeof FilterTypeArr)[number];
