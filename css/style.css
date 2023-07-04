@@ -20,19 +20,7 @@ body {
 	font-family: Verdana, Tahoma, sans-serif;
 }
 
-body {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: min-content auto min-content;
-	gap: 0.8rem;
-	grid-template-areas:
-		'nav'
-		'main'
-		'footer';
-}
-
 main {
-	grid-area: main;
 	margin-inline: 1rem;
 }
 
