@@ -2,68 +2,80 @@
 	{
 		"roomId": "A.E.01",
 		"title": "Vorlesungsraum",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},
 	{
 		"roomId": "A.E.02",
 		"title": "Vorlesungsraum",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},
 	{
 		"roomId": "A.E.03",
 		"title": "Seminarraum",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},
 	{
 		"roomId": "A.1.02",
 		"title": "Vorlesungsraum",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},
 	{
 		"roomId": "A.1.03",
 		"title": "Seminarraum",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},
 	{
 		"roomId": "A.2.02",
 		"title": "Vorlesungsraum",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},
 	{
 		"roomId": "A.2.03",
 		"title": "Seminarraum",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},
 	{
 		"roomId": "A.3.03",
 		"title": "Seminarraum",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},
 
 	{ "roomId": "B.E.21", "title": "Seminarraum" },
-	{ "roomId": "B.E.23.1", "title": "InnoLab - Hauptraum" },
-	{ "roomId": "B.E.23.2", "title": "InnoLab - Nebenraum" },
+	{
+		"roomId": "B.E.23.1",
+		"title": "InnoLab - Hauptraum",
+		"eKey": {
+			"student": false
+		}
+	},
+	{
+		"roomId": "B.E.23.2",
+		"title": "InnoLab - Nebenraum",
+		"eKey": {
+			"student": false
+		}
+	},
 	{ "roomId": "B.1.20", "title": "" },
 	{
 		"roomId": "B.1.23",
 		"title": "MI-Labor",
-		"ekey": {
+		"eKey": {
 			"student": false
 		}
 	},
@@ -74,7 +86,7 @@
 	{
 		"roomId": "C.E.32",
 		"title": "Hardware Labor 2",
-		"ekey": {
+		"eKey": {
 			"student": false
 		}
 	},
@@ -85,7 +97,7 @@
 	{
 		"roomId": "C.1.31",
 		"title": "Softwarelabor I",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},
@@ -93,7 +105,7 @@
 	{
 		"roomId": "C.2.32",
 		"title": "Softwarelabor II",
-		"ekey": {
+		"eKey": {
 			"student": true
 		}
 	},

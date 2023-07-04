@@ -13,4 +13,4 @@ Live site at [rooms.affeldt.io](https://rooms.affeldt.io)
 -   [ ] add search bar
 -   [x] add categories
 -   [ ] color box if room is occupied by plan
--   [ ] visualize if room can be accessed with student eKey
+-   [x] visualize if room can be accessed with student eKey

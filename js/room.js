@@ -140,12 +140,27 @@ function createInfo(str) {
 function createRoomElement(room) {
 	const roomEl = document.createElement('a');
 	roomEl.href = API_URL.replace(URL_PLACEHOLDER, room.roomId) + ACCEPT_HTML;
-	roomEl.classList.add('card', 'card-hover');
+	roomEl.classList.add('card');
 	roomEl.setAttribute(ATTRIBUTE_ROOM_ID, room.roomId);
+
+	const headerWrapper = document.createElement('div');
+	headerWrapper.classList.add('card-header');
+	roomEl.appendChild(headerWrapper);
 
 	const header = document.createElement('h3');
 	header.textContent = room.roomId;
-	roomEl.appendChild(header);
+	headerWrapper.appendChild(header);
+
+	const icon = document.querySelector('.keyIcon.hidden').cloneNode(true);
+	if (room.eKey) {
+		icon.classList.remove('hidden');
+		if (room.eKey.student) {
+			icon.classList.add('student');
+		} else {
+			icon.classList.add('locked');
+		}
+	}
+	headerWrapper.appendChild(icon);
 
 	const title = document.createElement('p');
 	title.textContent = room.title;
