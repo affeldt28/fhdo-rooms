@@ -1,4 +1,5 @@
 /** @typedef { import('./types').FhDoEvent} FhDoEvent */
+
 /** @typedef { import('./types').RoomInfo} RoomInfo */
 import {
 	API_URL,
