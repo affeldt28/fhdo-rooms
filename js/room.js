@@ -1,12 +1,13 @@
 /** @typedef { import('./types').FhDoEvent} FhDoEvent */
 /** @typedef { import('./types').RoomInfo} RoomInfo */
-
-const ATTRIBUTE_ROOM_ID = 'room';
-const URL_PLACEHOLDER = '*';
-const API_URL = `https://ws.inf.fh-dortmund.de/timetable/current/rest/Room/${URL_PLACEHOLDER}/AllEvents`;
-const ACCEPT_HTML = '?Accept=text/html';
-const ACCEPT_JSON = '?Accept=application/json';
-const ROOM_FREE = 'Raum ist laut Plan, heute frei.';
+import {
+	API_URL,
+	ACCEPT_JSON,
+	ACCEPT_HTML,
+	ROOM_FREE,
+	URL_PLACEHOLDER,
+	ATTRIBUTE_ROOM_ID,
+} from './const.js';
 
 /**
  * Creates get request to given url.
@@ -39,7 +40,7 @@ function getParsed(url) {
  */
 function loadNextEvents() {
 	/** @type {NodeListOf<HTMLAnchorElement>} */
-	const rooms = document.querySelectorAll('a[room]');
+	const rooms = document.querySelectorAll(`a[${ATTRIBUTE_ROOM_ID}]`);
 	const today = new Date();
 
 	for (const room of rooms) {
