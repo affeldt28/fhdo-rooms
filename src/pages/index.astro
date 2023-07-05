@@ -1,81 +1,134 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Card from '@components/Card.astro';
+import Layout from '@layouts/Layout.astro';
+import type { RoomInfo } from '@utils/rooms';
+
+const rooms = [
+	{
+		roomId: 'A.E.01',
+		title: 'Vorlesungsraum',
+		eKey: {
+			student: true,
+		},
+	},
+	{
+		roomId: 'A.E.02',
+		title: 'Vorlesungsraum',
+		eKey: {
+			student: true,
+		},
+	},
+	{
+		roomId: 'A.E.03',
+		title: 'Seminarraum',
+		eKey: {
+			student: true,
+		},
+	},
+	{
+		roomId: 'A.1.02',
+		title: 'Vorlesungsraum',
+		eKey: {
+			student: true,
+		},
+	},
+	{
+		roomId: 'A.1.03',
+		title: 'Seminarraum',
+		eKey: {
+			student: true,
+		},
+	},
+	{
+		roomId: 'A.2.02',
+		title: 'Vorlesungsraum',
+		eKey: {
+			student: true,
+		},
+	},
+	{
+		roomId: 'A.2.03',
+		title: 'Seminarraum',
+		eKey: {
+			student: true,
+		},
+	},
+	{
+		roomId: 'A.3.03',
+		title: 'Seminarraum',
+		eKey: {
+			student: true,
+		},
+	},
+
+	{ roomId: 'B.E.21', title: 'Seminarraum' },
+	{
+		roomId: 'B.E.23.1',
+		title: 'InnoLab - Hauptraum',
+		eKey: {
+			student: false,
+		},
+	},
+	{
+		roomId: 'B.E.23.2',
+		title: 'InnoLab - Nebenraum',
+		eKey: {
+			student: false,
+		},
+	},
+	{ roomId: 'B.1.20', title: '' },
+	{
+		roomId: 'B.1.23',
+		title: 'MI-Labor',
+		eKey: {
+			student: false,
+		},
+	},
+	{ roomId: 'B.2.20', title: 'Labor' },
+	{ roomId: 'B.2.21', title: '' },
+
+	{ roomId: 'C.E.31', title: 'Hardware Labor 1' },
+	{
+		roomId: 'C.E.32',
+		title: 'Hardware Labor 2',
+		eKey: {
+			student: false,
+		},
+	},
+	{ roomId: 'C.E.40', title: '' },
+	{ roomId: 'C.E.41', title: '' },
+	{ roomId: 'C.E.42', title: 'Seminarraum' },
+	{ roomId: 'C.1.30', title: '' },
+	{
+		roomId: 'C.1.31',
+		title: 'Softwarelabor I',
+		eKey: {
+			student: true,
+		},
+	},
+	{ roomId: 'C.2.30', title: '' },
+	{
+		roomId: 'C.2.32',
+		title: 'Softwarelabor II',
+		eKey: {
+			student: true,
+		},
+	},
+	{ roomId: 'C.3.32', title: '' },
+	{ roomId: 'C.3.34', title: '' },
+] satisfies RoomInfo[];
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+<Layout title='Welcome to Astro.'>
+	<main class='m-4'>
+		<h1 class='text-3xl font-bold text-gray-900'>
+			Fachhochschule Dortmund - Emil-Figge-Straße 42
+		</h1>
+		<article
+			id=''
+			class='grid gap-4 sm:justify-evenly sm:grid-rows-[min-content] sm:grid-cols-[repeat(auto-fit,_minmax(20em,_1fr))]'
+		>
+			{rooms.map((room) => <Card room={room} />)}
+		</article>
 	</main>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>
