@@ -151,16 +151,23 @@ function createRoomElement(room) {
 	header.textContent = room.roomId;
 	headerWrapper.appendChild(header);
 
-	const icon = document.querySelector('.keyIcon.hidden').cloneNode(true);
 	if (room.eKey) {
-		icon.classList.remove('hidden');
 		if (room.eKey.student) {
-			icon.classList.add('student');
+			const key = document
+				.querySelector('.keyIcon.hidden')
+				.cloneNode(true);
+			key.classList.remove('hidden');
+			key.classList.add('student');
+			headerWrapper.appendChild(key);
 		} else {
-			icon.classList.add('locked');
+			const lock = document
+				.querySelector('.lockIcon.hidden')
+				.cloneNode(true);
+			lock.classList.remove('hidden');
+			lock.classList.add('locked');
+			headerWrapper.appendChild(lock);
 		}
 	}
-	headerWrapper.appendChild(icon);
 
 	const title = document.createElement('p');
 	title.textContent = room.title;
