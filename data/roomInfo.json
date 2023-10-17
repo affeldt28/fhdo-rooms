@@ -56,7 +56,13 @@
 		}
 	},
 
-	{ "roomId": "B.E.21", "title": "Seminarraum" },
+	{
+		"roomId": "B.E.21",
+		"title": "Seminarraum",
+		"eKey": {
+			"student": false
+		}
+	},
 	{
 		"roomId": "B.E.23.1",
 		"title": "InnoLab - Hauptraum",
