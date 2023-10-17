@@ -167,6 +167,13 @@ function createRoomElement(room) {
 			lock.classList.add('locked');
 			headerWrapper.appendChild(lock);
 		}
+	} else {
+		const shrugging = document
+			.querySelector('.shruggingIcon.hidden')
+			.cloneNode(true);
+		shrugging.classList.remove('hidden');
+		shrugging.classList.add('shrugging');
+		headerWrapper.appendChild(shrugging);
 	}
 
 	const title = document.createElement('p');
