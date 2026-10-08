@@ -116,5 +116,11 @@
 		}
 	},
 	{ "roomId": "C.3.32", "title": "" },
-	{ "roomId": "C.3.34", "title": "" }
+	{
+		"roomId": "C.3.34",
+		"title": "Seminarraum",
+		"eKey": {
+			"student": false
+		}
+	}
 ]
