@@ -10,84 +10,86 @@ import {
 } from './const.js';
 
 /**
- * Creates get request to given url.
- * @param {string} url
- * @returns Response text from the request.
+ * Fetch JSON and reject HTTP errors or unexpected response formats.
+ * @param {string | URL} url
+ * @returns {Promise<Array>}
  */
-function get(url) {
-	const req = new XMLHttpRequest();
-	req.open('GET', url, false);
-	req.send(null);
-	return req.responseText;
-}
-
-/**
- * Creates get request to given url and parse it.
- * @param {string} url
- * @returns Parsed response text, if valid json otherwise the plain text.
- */
-function getParsed(url) {
-	const resText = get(url);
-	try {
-		return JSON.parse(resText);
-	} catch (error) {
-		return resText;
-	}
+async function getParsed(url) {
+	const response = await fetch(url);
+	if (!response.ok) throw new Error(`HTTP ${response.status}`);
+	const data = await response.json();
+	if (!Array.isArray(data)) throw new Error('Ungültige Serverantwort');
+	return data;
 }
 /**
  * TODO
  *
  */
-function loadNextEvents() {
+async function loadNextEvents() {
 	/** @type {NodeListOf<HTMLAnchorElement>} */
 	const rooms = document.querySelectorAll(`a[${ATTRIBUTE_ROOM_ID}]`);
 	const today = new Date();
 
-	for (const room of rooms) {
-		/** @type {string} */
-		const roomId = room.getAttribute(ATTRIBUTE_ROOM_ID);
-		/** @type {FhDoEvent[]} */
-		const events = getParsed(
-			API_URL.replace(URL_PLACEHOLDER, roomId) + ACCEPT_JSON,
-		);
+	await Promise.all(Array.from(rooms, async (room) => {
+		const status = createInfo('Raumbelegung wird geladen …');
+		status.classList.add('loading-status');
+		status.setAttribute('role', 'status');
+		room.setAttribute('aria-busy', 'true');
+		room.appendChild(status);
+		try {
+			/** @type {string} */
+			const roomId = room.getAttribute(ATTRIBUTE_ROOM_ID);
+			/** @type {FhDoEvent[]} */
+			const events = await getParsed(
+				API_URL.replace(URL_PLACEHOLDER, roomId) + ACCEPT_JSON,
+			);
 
-		if (events == undefined || events.length == 0) {
-			room.appendChild(createInfo(ROOM_FREE));
-			continue;
-		}
+			if (events == undefined || events.length == 0) {
+				room.appendChild(createInfo(ROOM_FREE));
+				return;
+			}
 
-		/** @type {FhDoEvent} */
-		const next = events[0];
+			/** @type {FhDoEvent} */
+			const next = events[0];
 
-		const beginn = new Date(next.timestampBegin * 1000);
-		const end = new Date(next.timestampEnd * 1000);
+			const beginn = new Date(next.timestampBegin * 1000);
+			const end = new Date(next.timestampEnd * 1000);
 
-		if (
-			beginn.getFullYear() == today.getFullYear() &&
-			beginn.getMonth() == today.getMonth() &&
-			beginn.getDate() == today.getDate()
-		) {
-			// check current date
-			if (beginn.getHours() <= today.getHours()) {
-				// hat schon angefangen
-				if (end.getHours() >= today.getHours()) {
-					// angefangen aber nicht zu ende
+			if (
+				beginn.getFullYear() == today.getFullYear() &&
+				beginn.getMonth() == today.getMonth() &&
+				beginn.getDate() == today.getDate()
+			) {
+				// check current date
+				if (beginn.getHours() <= today.getHours()) {
+					// hat schon angefangen
+					if (end.getHours() >= today.getHours()) {
+						// angefangen aber nicht zu ende
+						room.appendChild(
+							createInfo(timeFromTo('Jetzt', next.timeEnd)),
+						);
+						room.appendChild(createInfo(next.name));
+					}
+				} else {
+					// noch nicht angefangen
 					room.appendChild(
-						createInfo(timeFromTo('Jetzt', next.timeEnd)),
+						createInfo(timeFromTo(next.timeBegin, next.timeEnd)),
 					);
 					room.appendChild(createInfo(next.name));
 				}
 			} else {
-				// noch nicht angefangen
-				room.appendChild(
-					createInfo(timeFromTo(next.timeBegin, next.timeEnd)),
-				);
-				room.appendChild(createInfo(next.name));
+				room.appendChild(createInfo(ROOM_FREE));
 			}
-		} else {
-			room.appendChild(createInfo(ROOM_FREE));
+		} catch (error) {
+			const message = createInfo(`Raumbelegung konnte nicht geladen werden: ${error.message}`);
+			message.classList.add('error-status');
+			message.setAttribute('role', 'alert');
+			room.appendChild(message);
+		} finally {
+			status.remove();
+			room.setAttribute('aria-busy', 'false');
 		}
-	}
+	}));
 }
 
 /**
@@ -183,17 +185,30 @@ function createRoomElement(room) {
 	return roomEl;
 }
 
-function main() {
+async function main() {
 	const wrapper = document.querySelector('.card-wrapper');
 	if (!wrapper) return;
 
-	/** @type {RoomInfo[]} */
-	const rooms = getParsed('/data/roomInfo.json');
+	const status = document.querySelector('#rooms-status');
+	wrapper.setAttribute('aria-busy', 'true');
+	try {
+		/** @type {RoomInfo[]} */
+		const rooms = await getParsed('/data/roomInfo.json');
 
-	// Populate site with room cards
-	for (const room of rooms) wrapper.appendChild(createRoomElement(room));
+		// Populate site with room cards
+		for (const room of rooms) wrapper.appendChild(createRoomElement(room));
 
-	loadNextEvents();
+		status.hidden = true;
+		wrapper.setAttribute('aria-busy', 'false');
+		await loadNextEvents();
+	} catch (error) {
+		status.textContent = `Räume konnten nicht geladen werden: ${error.message}`;
+		status.classList.remove('loading-status');
+		status.classList.add('error-status');
+		status.setAttribute('role', 'alert');
+	} finally {
+		wrapper.setAttribute('aria-busy', 'false');
+	}
 }
 
 main();
