@@ -154,24 +154,24 @@ function createRoomElement(room) {
 	if (room.eKey) {
 		if (room.eKey.student) {
 			const key = document
-				.querySelector('.keyIcon.hidden')
+				.querySelector('.keyIcon.legend')
 				.cloneNode(true);
-			key.classList.remove('hidden');
+			key.classList.remove('legend');
 			key.classList.add('student');
 			headerWrapper.appendChild(key);
 		} else {
 			const lock = document
-				.querySelector('.lockIcon.hidden')
+				.querySelector('.lockIcon.legend')
 				.cloneNode(true);
-			lock.classList.remove('hidden');
+			lock.classList.remove('legend');
 			lock.classList.add('locked');
 			headerWrapper.appendChild(lock);
 		}
 	} else {
 		const shrugging = document
-			.querySelector('.shruggingIcon.hidden')
+			.querySelector('.shruggingIcon.legend')
 			.cloneNode(true);
-		shrugging.classList.remove('hidden');
+		shrugging.classList.remove('legend');
 		shrugging.classList.add('shrugging');
 		headerWrapper.appendChild(shrugging);
 	}
@@ -179,10 +179,6 @@ function createRoomElement(room) {
 	const title = document.createElement('p');
 	title.textContent = room.title;
 	roomEl.appendChild(title);
-
-	const spacer = document.createElement('span');
-	spacer.style = 'display: block; padding-bottom: 1rem;';
-	roomEl.appendChild(spacer);
 
 	return roomEl;
 }
