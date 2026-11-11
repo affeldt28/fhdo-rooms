@@ -77,7 +77,12 @@
 			"student": false
 		}
 	},
-	{ "roomId": "B.1.20", "title": "" },
+	{
+		"roomId": "B.1.20",
+		"title": "Seminarraum",
+		"eKey": {
+			"student": false
+	},
 	{
 		"roomId": "B.1.23",
 		"title": "MI-Labor",
